@@ -8,6 +8,20 @@ dotenv.config()
 
 const INFURA_TOKEN = process.env.INFURA_TOKEN || ""
 
+// dynamically changes endpoints for local tests
+const zkSyncTestnet =
+    process.env.NODE_ENV == "test"
+        ? {
+              url: "http://localhost:3050",
+              ethNetwork: "http://localhost:8545",
+              zksync: true,
+          }
+        : {
+              url: "https://zksync2-testnet.zksync.dev",
+              ethNetwork: "goerli",
+              zksync: true,
+          }
+
 module.exports = {
     zksolc: {
         version: "1.3.10",
@@ -27,7 +41,7 @@ module.exports = {
             },
         },
     },
-    defaultNetwork: "zkTestnet",
+    defaultNetwork: "zkSyncTestnet",
     networks: {
         goerli: {
             url: `https://goerli.infura.io/v3/${INFURA_TOKEN}`, // The Ethereum Web3 RPC URL (optional).
@@ -38,6 +52,10 @@ module.exports = {
             ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
             zksync: true,
         },
+        hardhat: {
+            zksync: true,
+        },
+        zkSyncTestnet,
     },
     // defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
     solidity: {

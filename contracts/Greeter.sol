@@ -1,10 +1,8 @@
-// SPDX-License-Identifier: MIT
-
-pragma solidity ^0.8.0;
-pragma abicoder v2;
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.11;
 
 contract Greeter {
-    string greeting;
+    string private greeting;
 
     constructor(string memory _greeting) {
         greeting = _greeting;

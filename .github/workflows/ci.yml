@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install npm packages
+        run: yarn install --frozen-lockfile
+
+      - name: Compile
+        run: |
+          yarn run compile
+
+      - name: Lint
+        run: yarn run lint
+
+      - name: Run tests
+        run: yarn run test

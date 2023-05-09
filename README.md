@@ -8,7 +8,7 @@ $ cp .env.example .env
 $ yarn build
 ```
 
-## Compile the Contracts
+Compile the Contracts
 
 ```sh
 $ yarn run compile
@@ -16,18 +16,19 @@ $ yarn run compile
 
 ## Test the Contracts
 
-We need to run the local testnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
+> We need to run the local testnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
+>
+> ```sh
+> # In another folder
+> $ git clone https://github.com/matter-labs/local-setup.git
+> $ cd local-setup
+> $ ./start.sh
+> ```
+
+Run test:
 
 ```sh
-# Open new folder
-$ git clone https://github.com/matter-labs/local-setup.git
-$ cd local-setup
-$ ./start.sh
-```
-
-Go back to this folder and run test:
-
-```sh
+# In this repo root
 $ yarn test
 >
 $ NODE_ENV=test hardhat test
@@ -45,6 +46,29 @@ Contract deployed
 
 ✨  Done in 11.91s.
 ```
+
+## Scripts
+
+```sh
+$ yarn hardhat deploy-zksync --network <network_name> --script scripts/<script_name>.ts
+```
+
+`<network_name>` could be:
+
+- `zkSyncEraTestnet`: zkSync Era TestNet 
+-  `zkSyncLocal`: zkSync Local Devnet
+
+### Bridge Goerli ETH to ZkSync Era Testnet
+
+-   [Portal](https://portal.zksync.io/bridge)
+
+### Deploy the Contracts
+
+TBD
+
+### Interact with the Testnet Contracts Example
+
+TBD
 
 ## Reference
 

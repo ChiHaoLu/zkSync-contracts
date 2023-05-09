@@ -1,0 +1,67 @@
+{
+  "name": "zkSync-contracts",
+  "version": "0.0.1",
+  "main": "index.js",
+  "engines": {
+    "node": ">=16.0.0",
+    "yarn": "^1.22.10"
+  },
+  "repository": "https://github.com/ChiHaoLu/zkSync-contracts.git",
+  "author": "ChiHaoLu <b08303113@ntu.edu.tw>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "prettier --check . && eslint --ignore-path .prettierignore \"./**/*.ts\"",
+    "lint:fix": "yarn eslint --fix",
+    "fmt": "yarn prettier --write",
+    "test": "mocha test/tests.ts --exit",
+    "build": "tsc --build .",
+    "clean": "rimraf dist",
+    "compile": "yarn hardhat compile",
+    "execute": "node -r ts-node/register -r tsconfig-paths/register hardhatRunWithArgs.ts"
+  },
+  "devDependencies": {
+    "@matterlabs/hardhat-zksync-chai-matchers": "^0.1.2",
+    "@matterlabs/hardhat-zksync-deploy": "^0.6.3",
+    "@matterlabs/hardhat-zksync-solc": "^0.3.17",
+    "@matterlabs/hardhat-zksync-toolbox": "^0.1.1",
+    "@matterlabs/hardhat-zksync-verify": "^0.1.6",
+    "@matterlabs/hardhat-zksync-vyper": "^0.1.8",
+    "@nomicfoundation/hardhat-chai-matchers": "^1.0.6",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@nomiclabs/hardhat-etherscan": "^3.1.7",
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "4.29.2",
+    "@typescript-eslint/parser": "5.13.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-prettier": "3.4.0",
+    "ethers": "^6.3.0",
+    "hardhat": "^2.14.0",
+    "prettier": "2.3.2",
+    "rimraf": "^3.0.2",
+    "ts-node": "^10.6.0",
+    "typescript": "^4.6.2",
+    "zksync-web3": "^0.14.3"
+  },
+  "dependencies": {
+    "@matterlabs/hardhat-zksync-deploy": "^0.6.3",
+    "@matterlabs/hardhat-zksync-solc": "^0.3.17",
+    "@matterlabs/zksync-contracts": "^0.6.1",
+    "@openzeppelin/contracts": "^4.8.3",
+    "@openzeppelin/contracts-upgradeable": "^4.8.3",
+    "chalk": "4.1.2",
+    "ethers": "^6.3.0",
+    "hardhat": "^2.14.0",
+    "zksync-web3": "^0.14.3"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 120,
+    "parser": "typescript",
+    "singleQuote": true,
+    "bracketSpacing": true
+  }
+}

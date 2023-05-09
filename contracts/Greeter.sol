@@ -5,6 +5,7 @@ pragma abicoder v2;
 
 contract Greeter {
     string greeting;
+
     constructor(string memory _greeting) {
         greeting = _greeting;
     }

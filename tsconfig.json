@@ -1,18 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "module": "commonjs",
     "strict": true,
+    "strictPropertyInitialization": false,
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
+    "resolveJsonModule": true,
+    "noImplicitAny": false,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "paths": {
+      "~/*": ["*"]
+    }
   },
-  "include": [
-    "./hardhat.config.ts",
-    "./scripts",
-    "./deploy",
-    "./test",
-    "typechain/**/*"
-  ]
+  "include": ["./hardhat.config.ts", "./scripts", "./deploy", "./test", "typechain/**/*"]
 }

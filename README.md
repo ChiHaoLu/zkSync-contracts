@@ -1,4 +1,4 @@
-# zkSync-contracts
+# zkSync Contracts
 
 ## Setup
 
@@ -7,7 +7,6 @@
 ```sh
 $ yarn install --frozen-lockfile
 ```
-
 
 ## Compile contracts
 

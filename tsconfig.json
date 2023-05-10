@@ -10,7 +10,6 @@
     "outDir": "dist",
     "skipLibCheck": true,
     "baseUrl": ".",
-    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
     "paths": {

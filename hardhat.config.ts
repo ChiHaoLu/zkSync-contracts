@@ -27,15 +27,15 @@ module.exports = {
             },
         },
     },
-    defaultNetwork: "zkSyncTestnet",
+    defaultNetwork: "zkSyncLocal",
     networks: {
         goerli: {
             url: `https://goerli.infura.io/v3/${INFURA_TOKEN}`, // The Ethereum Web3 RPC URL (optional).
             zksync: false, // Set to false to target other networks.
         },
         zkSyncEraTestnet: {
-            url: "https://testnet.era.zksync.dev", // The testnet RPC URL of zkSync Era network.
-            ethNetwork: "goerli", // The Ethereum Web3 RPC URL, or the identifier of the network (e.g. `mainnet` or `goerli`)
+            url: "https://zksync2-testnet.zksync.dev", // you should use the URL of the zkSync network RPC
+            ethNetwork: "goerli",
             zksync: true,
         },
         zkSyncLocal: {

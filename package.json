@@ -13,11 +13,12 @@
   "scripts": {
     "format": "prettier --write .",
     "lint": "prettier --check . && eslint --ignore-path .prettierignore \"./**/*.ts\"",
-    "compile": "yarn hardhat compile",
-    "execute": "node -r ts-node/register -r tsconfig-paths/register hardhatRunWithArgs.ts",
+    "compile": "hardhat compile",
+    "execute:local": "hardhat deploy-zksync --network zkSyncLocal --script",
+    "execute:testnet": "hardhat deploy-zksync --network zkSyncEraTestnet --script",
     "test": "hardhat test --network zkSyncLocal",
     "build": "tsc --build .",
-    "clean": "hardhat clean && rimraf dist"
+    "clean": "hardhat clean && rimraf dist "
   },
   "devDependencies": {
     "@matterlabs/hardhat-zksync-chai-matchers": "^0.1.2",

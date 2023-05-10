@@ -35,7 +35,6 @@ $ NODE_ENV=test hardhat test
 Compiling 1 Solidity file
 Successfully compiled 1 Solidity file
 
-
   Greeter
 Deploying contract
 Contract deployed
@@ -49,14 +48,26 @@ Contract deployed
 
 ## Scripts
 
+In the zkSync-hardhat-plugin, we should run the scripts with the `$ yarn hardhat deploy-zksync`:
+
 ```sh
 $ yarn hardhat deploy-zksync --network <network_name> --script scripts/<script_name>.ts
 ```
 
 `<network_name>` could be:
 
-- `zkSyncEraTestnet`: zkSync Era TestNet 
--  `zkSyncLocal`: zkSync Local Devnet
+-   `zkSyncEraTestnet`: zkSync Era TestNet
+-   `zkSyncLocal`: zkSync Local Devnet
+
+In this repo, you can use the yarn command to run the scripts:
+
+```JSON
+"scripts": {
+    "execute:local": "yarn hardhat deploy-zksync --network zkSyncLocal --script",
+    "execute:eraGoerli": "yarn hardhat deploy-zksync --network zkSyncEra --script"
+    // ...
+  }
+```
 
 ### Bridge Goerli ETH to ZkSync Era Testnet
 
@@ -69,6 +80,12 @@ TBD
 ### Interact with the Testnet Contracts Example
 
 TBD
+
+### Account Abstraction Demo
+
+```sh
+$ yarn execute:local multiSigAccountDemo.ts
+```
 
 ## Reference
 

@@ -11,19 +11,13 @@ const deposit = async (hre: HardhatRuntimeEnvironment) => {
     console.log(`Running example deposit script for the Greeter contract`)
     console.log()
 
-    // private key from env var
-    const privateKey =
-        hre.network.name === "zkSyncLocal"
-            ? process.env.LOCAL_TESTNET_RICH_WALLET_PRIVATE_KEY
-            : process.env.PRIVATE_KEY
-    if (!privateKey) {
-        throw new Error(
-            `Please set your PRIVATE_KEY in the '.env' file. Use the '.env.example' file as an example.`,
-        )
-    }
-
     // artifact loading
-    const wallet = new Wallet(privateKey)
+    const testMnemonic =
+        "stuff slice staff easily soup parent arm payment cotton trade scatter struggle"
+    const wallet =
+        hre.network.name === "zkSyncLocal"
+            ? Wallet.fromMnemonic(testMnemonic, "m/44'/60'/0'/0/0")
+            : new Wallet(process.env.PRIVATE_KEY as string)
     const deployer = new Deployer(hre, wallet)
 
     // fund deposit to L2 (comment out this block if depositing not needed)

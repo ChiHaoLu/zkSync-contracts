@@ -1,5 +1,6 @@
 import "@matterlabs/hardhat-zksync-deploy"
 import "@matterlabs/hardhat-zksync-solc"
+import "@matterlabs/hardhat-zksync-upgradable"
 
 import "tsconfig-paths/register"
 
@@ -10,7 +11,7 @@ const INFURA_TOKEN = process.env.INFURA_TOKEN || ""
 
 module.exports = {
     zksolc: {
-        version: "1.3.10",
+        version: "1.3.7", // upgradable plugin currently supports zksolc 1.3.7
         compilerSource: "binary",
         settings: {
             //compilerPath: "zksolc",  // optional. Ignored for compilerSource "docker". Can be used if compiler is located in a specific folder
@@ -47,7 +48,6 @@ module.exports = {
             zksync: true,
         },
     },
-    // defaultNetwork: "zkTestnet", // optional (if not set, use '--network zkTestnet')
     solidity: {
         version: "0.8.13",
         settings: {

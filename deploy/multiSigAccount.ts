@@ -39,9 +39,7 @@ export default async function (hre: HardhatRuntimeEnvironment) {
     const owner2 = zk.Wallet.createRandom()
 
     const aa = await aaDeployer.deploy(aaArtifact, [owner1.address, owner2.address], undefined, [])
-
     const multisigAddress = aa.address
-
     console.info(chalk.green(`Multisig was deployed to ${multisigAddress}`))
 
     await (
@@ -57,14 +55,16 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
     const gasLimit = await provider.estimateGas(aaTx)
     const gasPrice = await provider.getGasPrice()
+    const chainId = (await provider.getNetwork()).chainId
+    const nonce = await provider.getTransactionCount(multisigAddress)
 
     aaTx = {
         ...aaTx,
         from: multisigAddress,
         gasLimit: gasLimit,
         gasPrice: gasPrice,
-        chainId: (await provider.getNetwork()).chainId,
-        nonce: await provider.getTransactionCount(multisigAddress),
+        chainId: chainId,
+        nonce: nonce,
         type: 113,
         customData: {
             gasPerPubdata: zk.utils.DEFAULT_GAS_PER_PUBDATA_LIMIT,

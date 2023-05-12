@@ -1,5 +1,7 @@
 # zkSync Contracts
 
+> To successfullty development in the zkSync, I highly encourage everyone scan the `hardhat.config.ts` first, there are lots of comments in this config.
+
 ## Set-up
 
 ```sh
@@ -138,7 +140,26 @@ Function responded with: General Kenobi!
 ### Account Abstraction Demo
 
 ```sh
-$ yarn execute:local multiSigAccountDemo.ts
+$ yarn execute:local multiSigAccount.ts
+>
+$ hardhat deploy-zksync --network zkSyncLocal --script multiSigAccount.ts
+Running deploy script for the Account Abstraction
+Greeter was deployed to 0xc0431C32561DabE0c8FD791B52590BbBA413c235
+Multisig was deployed to 0x996462e0eAf00bF6BF0Ea15F29d715C0eD3906F1
+Signaure is Valid in MultiSigAccount!
+The multisig's nonce before the first tx is 0
+The multisig's nonce after the first tx is 1
+Successfully initiated tx from deployed multisig!
+
+✨  Done in 11.92s.
+```
+
+You can also deploy with the AA Factory:
+
+```sh
+$ yarn hardhat deploy-zksync --network zkSyncLocal --script deployAAFactory.ts
+>
+AA factory address: 0x3ccA24e1A0e49654bc3482ab70199b7400eb7A3a
 ```
 
 ### Upgradable

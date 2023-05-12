@@ -20,7 +20,7 @@ module.exports = {
                 tag: "latest", // Deprecated: used for compilerSource: "docker"
             },
             libraries: {}, // optional. References to non-inlinable libraries
-            isSystem: false, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
+            isSystem: true, // optional.  Enables Yul instructions available only for zkSync system contracts and libraries
             forceEvmla: false, // optional. Falls back to EVM legacy assembly if there is a bug with Yul
             optimizer: {
                 enabled: true, // optional. True by default
@@ -30,6 +30,7 @@ module.exports = {
     },
     defaultNetwork: "zkSyncLocal",
     networks: {
+        // which will be specified with the --netowrk tag
         goerli: {
             url: `https://goerli.infura.io/v3/${INFURA_TOKEN}`, // The Ethereum Web3 RPC URL (optional).
             zksync: false, // Set to false to target other networks.
@@ -40,6 +41,7 @@ module.exports = {
             zksync: true,
         },
         zkSyncLocal: {
+            // you should run the "matter-labs/local-setup" first
             url: "http://localhost:3050",
             ethNetwork: "http://localhost:8545",
             zksync: true,

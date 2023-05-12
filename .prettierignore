@@ -2,10 +2,15 @@ node_modules
 .vscode
 .env
 .DS_Store
+volumes/
 
 # Hardhat files
+dist
 cache
 artifacts
+cache-zk
+artifacts-zk
+.upgradable
 
 # Logs
 logs

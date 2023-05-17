@@ -1,6 +1,7 @@
 # zkSync Contracts
 
-> To successfullty development in the zkSync, I highly encourage everyone scan the `hardhat.config.ts` first, there are lots of comments in this config.
+> 1. To successfullty development in the zkSync, I highly encourage everyone scan the `hardhat.config.ts` first, there are lots of comments in this config.
+> 1. Lots of examples are modified or copied from the repo listed in references, very thanks to zkSync and other impressive developers.
 
 ## Set-up
 
@@ -15,6 +16,20 @@ Compile the Contracts
 ```sh
 $ yarn run compile
 ```
+
+## Waiting List
+
+-   ✅ Construct the Development Env（TestNet & Local Devnet）
+-   ✅ Deploy normal contract（`deploy.ts`）
+-   ✅ Interact with other contracts（`interact.ts`）
+-   ✅ Deposit from L1 → L2（`deposit.ts`）
+-   ✅ Basic Test（`test` folder）
+-   ✅ Use Proxy Contract + Upgrade（`transparentUpgradableProxies.ts` & `beaconProxies.ts`）
+-   ✅ Demo the MultiSigAccount Script（`multiSigAccount.ts`）
+-   🔨 Paymaster(`paymaster.ts`)
+-   🔨 Daily Limitation
+-   🔨 Social Recovery Account
+-   🔨 Plugin (e.g. Session Key)
 
 ## Test the Contracts
 
@@ -220,9 +235,19 @@ New box value is V2: 42
 
 ## Reference
 
+### Overall
+
 -   [matter-labs/era-tutorial-examples](https://github.com/matter-labs/era-tutorial-examples/tree/main/local-setup-testing)
 -   [matter-labs/custom-aa-tutorial](https://github.com/matter-labs/custom-aa-tutorial/tree/main)
 -   [matter-labs/l2-intro-demo](https://github.com/matter-labs/l2-intro-demo)
 -   [matter-labs/l2-intro-ethdenver](https://github.com/matter-labs/l2-intro-ethdenver)
 -   [JackHamer09/zkSync-era-Hardhat-example](https://github.com/JackHamer09/zkSync-era-Hardhat-example)
 -   [miguelmota/zksync-messenger-l2-to-l1-example](https://github.com/miguelmota/zksync-messenger-l2-to-l1-example)
+
+### Paymaster
+
+-   [matter-labs/custom-paymaster-tutorial](https://github.com/matter-labs/custom-paymaster-tutorial)
+-   [vareger/zksync-aa-tests](https://github.com/vareger/zksync-aa-tests)
+-   [kariy/zksync-contracts](https://github.com/kariy/zksync-contracts/blob/bec65b47d5c5cce43bd900d4a08ecbbe52f38cde/contracts/WalletFactory.sol#L61)
+-   [chee-chyuan/zksync-custom-paymaster-poc](https://github.com/chee-chyuan/zksync-custom-paymaster-poc/tree/490e766a78c2b0e9984bf76c64b8c91093d8a0c3)
+-   [pycckuu/zk-onboarding-service](https://github.com/pycckuu/zk-onboarding-service/blob/b2556e8a6bcc4027d5e904ad74d299b21b6eb100/contracts/Paymaster.sol#L36)

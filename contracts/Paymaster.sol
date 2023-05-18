@@ -9,7 +9,7 @@ import {TransactionHelper, Transaction} from "@matterlabs/zksync-contracts/l2/sy
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 
-contract MyPaymaster is IPaymaster {
+contract Paymaster is IPaymaster {
     uint256 constant PRICE_FOR_PAYING_FEES = 1;
 
     address public allowedToken;

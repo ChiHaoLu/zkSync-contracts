@@ -20,20 +20,25 @@ $ yarn run compile
 ## Waiting List
 
 -   ✅ Construct the Development Env（TestNet & Local Devnet）
--   ✅ Deploy normal contract（`deploy.ts`）
--   ✅ Interact with other contracts（`interact.ts`）
--   ✅ Deposit from L1 → L2（`deposit.ts`）
--   ✅ Basic Test（`test` folder）
--   ✅ Use Proxy Contract + Upgrade（`transparentUpgradableProxies.ts` & `beaconProxies.ts`）
--   ✅ Demo the MultiSigAccount Script（`multiSigAccount.ts`）
--   🔨 Paymaster(`paymaster.ts`)
+-   ✅ [Deploy normal contract（`deploy.ts`）](#deploy-the-contracts)
+-   ✅ [Interact with other contracts（`interact.ts`）](#interact-with-the-testnet-contracts-example)
+-   ✅ [Deposit from L1 → L2（`deposit.ts`）](#bridge-goerli-eth-to-zksync-era-testnet)
+-   ✅ [Basic Test（`test` folder](#test-the-contracts)
+-   ✅ [Use Proxy Contract + Upgrade（`transparentUpgradableProxies.ts` & `beaconProxies.ts`）](#upgradable)
+-   ✅ [Demo the MultiSig AA（`multiSigAccount.ts`）](#multisig-account-abstraction-demo)
+-   ✅ [Paymaster (`paymaster.ts`)](#paymaster)
 -   🔨 Daily Limitation
+-   🔨 Multi Calls
+-   🔨 Other Signature Algos.
+-   🔨 L1 → L2 Msg
+-   🔨 L2 → L1 Msg
 -   🔨 Social Recovery Account
 -   🔨 Plugin (e.g. Session Key)
 
 ## Test the Contracts
 
-> We need to run the local testnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
+> -   We need to run the local devnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
+> -   After run the local devnet, you should wait for local devnet to run the node about 5 mins.
 >
 > ```sh
 > # In another folder
@@ -152,7 +157,7 @@ Function responded with: General Kenobi!
 ✨  Done in 11.32s.
 ```
 
-### Account Abstraction Demo
+### MultiSig Account Abstraction Demo
 
 ```sh
 $ yarn execute:local multiSigAccount.ts
@@ -232,6 +237,32 @@ New box value is V2: 42
 
 ✨  Done in 9.72s.
 ```
+
+### Paymaster
+
+```sh
+$ yarn execute:local paymaster.ts
+>
+$ hardhat deploy-zksync --network zkSyncLocal --script paymaster.ts
+Empty wallet's address: 0xc4C469E81A6BFdE53eB71D653a653fb14E36A09c
+Empty wallet's private key: 0x70f4e3224f5d6c426016bf5098339977b6c17c92238189b9162965074618bdb0
+ERC20 address: 0xf43624d811c5DC9eF91cF237ab9B8eE220D438eE
+Paymaster address: 0xE015ADD43D2C41e8Af4e9238e389101884853896
+Funding paymaster with ETH
+emptyWallet ETH balance is now 0
+Paymaster ETH balance is now 600000000000000000
+ERC20 token balance of the empty wallet before mint: 10
+Transaction fee estimation is :>>  53975500000000
+Minting 5 tokens for empty wallet via paymaster...
+   - Pay 1 token as fee for paymaster
+Paymaster ERC20 token balance is now 1
+Paymaster ETH balance is now 599955631000000000
+ERC20 token balance of the empty wallet after mint: 14
+
+✨  Done in 12.32s.
+```
+
+---
 
 ## Reference
 

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.11;
+pragma solidity ^0.8.13;
 
 import "@matterlabs/zksync-contracts/l2/system-contracts/Constants.sol";
 import "@matterlabs/zksync-contracts/l2/system-contracts/libraries/SystemContractsCaller.sol";
@@ -11,11 +11,7 @@ contract AAFactory {
         aaBytecodeHash = _aaBytecodeHash;
     }
 
-    function deployAccount(
-        bytes32 salt,
-        address owner1,
-        address owner2
-    ) external returns (address accountAddress) {
+    function deployAccount(bytes32 salt, address owner) external returns (address accountAddress) {
         (bool success, bytes memory returnData) = SystemContractsCaller.systemCallWithReturndata(
             uint32(gasleft()),
             address(DEPLOYER_SYSTEM_CONTRACT),
@@ -25,11 +21,12 @@ contract AAFactory {
                 (
                     salt,
                     aaBytecodeHash,
-                    abi.encode(owner1, owner2),
+                    abi.encode(owner),
                     IContractDeployer.AccountAbstractionVersion.Version1
                 )
             )
         );
+        require(success, "Deployment failed");
 
         (accountAddress) = abi.decode(returnData, (address));
     }

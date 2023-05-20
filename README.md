@@ -1,7 +1,7 @@
 # zkSync Contracts
 
-> 1. To successfullty development in the zkSync, I highly encourage everyone scan the `hardhat.config.ts` first, there are lots of comments in this config.
-> 1. Lots of examples are modified or copied from the repo listed in references, very thanks to zkSync and other impressive developers.
+> 1. To successfullty development in the zkSync Era (zkSync 2.0), I highly encourage everyone scan the `hardhat.config.ts` first, there are lots of comments in this config.
+> 1. Lots of examples are modified or copied from the repo listed in [references](#reference), very thanks to Matter Labs and other impressive developers.
 
 ## Set-up
 
@@ -17,6 +17,16 @@ Compile the Contracts
 $ yarn run compile
 ```
 
+> -   If you want to develop in the local (for test or run scripts), instead of Testnet, you need to run the local devnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
+> -   After run the local devnet, you should wait for local devnet to run the node about 5 mins.
+>
+> ```sh
+> # In another folder
+> $ git clone https://github.com/matter-labs/local-setup.git
+> $ cd local-setup
+> $ ./start.sh
+> ```
+
 ## Waiting List
 
 -   ✅ Construct the Development Env（TestNet & Local Devnet）
@@ -29,23 +39,15 @@ $ yarn run compile
 -   ✅ [Paymaster (`paymaster.ts`)](#paymaster)
 -   🔨 Daily Limitation
 -   🔨 Multi Calls
+-   🔨 ERC-721 Token
 -   🔨 Other Signature Algos.
 -   🔨 L1 → L2 Msg
 -   🔨 L2 → L1 Msg
+-   🔨 Cross-chain governance
 -   🔨 Social Recovery Account
 -   🔨 Plugin (e.g. Session Key)
 
 ## Test the Contracts
-
-> -   We need to run the local devnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
-> -   After run the local devnet, you should wait for local devnet to run the node about 5 mins.
->
-> ```sh
-> # In another folder
-> $ git clone https://github.com/matter-labs/local-setup.git
-> $ cd local-setup
-> $ ./start.sh
-> ```
 
 Run test:
 
@@ -264,21 +266,41 @@ ERC20 token balance of the empty wallet after mint: 14
 
 ---
 
+## Questions
+
+1. If we use the non-721-type to sign the normal transaction(non-deployment-transaction), is it valid or not?
+1. If I deploy my own contract factory which will use the `CREATE2` to deploy contract(not calling ContractDeployer system contract), is it valid or not?
+    - When we deploy a contract, do we MUST call the ContractDeployer?
+1. Will the operator or API check the transaction is 712-type or not?
+
+---
+
 ## Reference
 
-### Overall
+### Tutorial
 
 -   [matter-labs/era-tutorial-examples](https://github.com/matter-labs/era-tutorial-examples/tree/main/local-setup-testing)
+-   [matter-labs/custom-paymaster-tutorial](https://github.com/matter-labs/custom-paymaster-tutorial)
 -   [matter-labs/custom-aa-tutorial](https://github.com/matter-labs/custom-aa-tutorial/tree/main)
+-   [matter-labs/daily-spendlimit-tutorial](https://github.com/matter-labs/daily-spendlimit-tutorial)
 -   [matter-labs/l2-intro-demo](https://github.com/matter-labs/l2-intro-demo)
 -   [matter-labs/l2-intro-ethdenver](https://github.com/matter-labs/l2-intro-ethdenver)
 -   [JackHamer09/zkSync-era-Hardhat-example](https://github.com/JackHamer09/zkSync-era-Hardhat-example)
 -   [miguelmota/zksync-messenger-l2-to-l1-example](https://github.com/miguelmota/zksync-messenger-l2-to-l1-example)
 
-### Paymaster
+### Important links
 
--   [matter-labs/custom-paymaster-tutorial](https://github.com/matter-labs/custom-paymaster-tutorial)
--   [vareger/zksync-aa-tests](https://github.com/vareger/zksync-aa-tests)
--   [kariy/zksync-contracts](https://github.com/kariy/zksync-contracts/blob/bec65b47d5c5cce43bd900d4a08ecbbe52f38cde/contracts/WalletFactory.sol#L61)
--   [chee-chyuan/zksync-custom-paymaster-poc](https://github.com/chee-chyuan/zksync-custom-paymaster-poc/tree/490e766a78c2b0e9984bf76c64b8c91093d8a0c3)
--   [pycckuu/zk-onboarding-service](https://github.com/pycckuu/zk-onboarding-service/blob/b2556e8a6bcc4027d5e904ad74d299b21b6eb100/contracts/Paymaster.sol#L36)
+-   Testnet network info
+    -   Network Name: zkSync Era Testnet
+    -   RPC URL: https://testnet.era.zksync.dev
+    -   Chain ID: 280
+    -   Currency Symbol: ETH
+    -   Block Explorer URL: https://goerli.explorer.zksync.io/
+    -   WebSocket URL: wss://testnet.era.zksync.dev/ws
+-   Mainnet network info
+    -   Network Name: zkSync Era Mainnet
+    -   RPC URL: https://mainnet.era.zksync.io
+    -   Chain ID: 324
+    -   Currency Symbol: ETH
+    -   Block Explorer URL: https://explorer.zksync.io/
+    -   WebSocket URL: wss://mainnet.era.zksync.io/ws

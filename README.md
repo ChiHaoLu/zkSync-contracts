@@ -3,6 +3,31 @@
 > 1. To successfullty development in the zkSync Era (zkSync 2.0), I highly encourage everyone scan the `hardhat.config.ts` first, there are lots of comments in this config.
 > 1. Lots of examples are modified or copied from the repo listed in [references](#reference), very thanks to Matter Labs and other impressive developers.
 
+## Table of Contents
+
+-   ✅ [Construct the Development Env（TestNet & Local Devnet）](#set-up)
+-   ✅ [Basic Test（`test` folder](#test-the-contracts)
+-   Basic Operations
+    -   ✅ [Deploy normal contract（`deploy.ts`）](#deploy-the-contracts)
+    -   ✅ [Interact with other contracts（`interact.ts`）](#interact-with-the-testnet-contracts-example)
+    -   ✅ [Use Proxy Contract + Upgrade（`transparentUpgradableProxies.ts` & `beaconProxies.ts`）](#upgradable)
+    -   🔨 ERC-721 Token
+-   Account Abstraction
+    -   ✅ [Demo the MultiSig AA（`multiSigAccount.ts`）](#multisig-account-abstraction-demo)
+    -   ✅ [Paymaster (`paymaster.ts`)](#paymaster)
+    -   ✅ [Daily Limitation](#daily-limitation)
+    -   🔨 Multi Calls
+    -   🔨 Other Signature Algos.
+    -   🔨 Social Recovery Account
+    -   🔨 Plugin (e.g. Session Key)
+-   Rollup Operations
+    -   ✅ [Deposit from L1 → L2（`deposit.ts`）](#bridge-goerli-eth-to-zksync-era-testnet)
+    -   🔨 L1 → L2 Msg
+    -   🔨 L2 → L1 Msg
+    -   🔨 Cross-chain governance
+-   [FAQ](#faq)
+-   [Reference](#reference)
+
 ## Set-up
 
 ```sh
@@ -18,7 +43,7 @@ $ yarn run compile
 ```
 
 > -   If you want to develop in the local (for test or run scripts), instead of Testnet, you need to run the local devnet([matter-labs/local-setup](https://github.com/matter-labs/local-setup)) first.
-> -   After run the local devnet, you should wait for local devnet to run the node about 5 mins.
+> -   After run the local devnet, you should wait for local devnet to run the node about 10 mins.
 >
 > ```sh
 > # In another folder
@@ -26,26 +51,6 @@ $ yarn run compile
 > $ cd local-setup
 > $ ./start.sh
 > ```
-
-## Waiting List
-
--   ✅ Construct the Development Env（TestNet & Local Devnet）
--   ✅ [Deploy normal contract（`deploy.ts`）](#deploy-the-contracts)
--   ✅ [Interact with other contracts（`interact.ts`）](#interact-with-the-testnet-contracts-example)
--   ✅ [Deposit from L1 → L2（`deposit.ts`）](#bridge-goerli-eth-to-zksync-era-testnet)
--   ✅ [Basic Test（`test` folder](#test-the-contracts)
--   ✅ [Use Proxy Contract + Upgrade（`transparentUpgradableProxies.ts` & `beaconProxies.ts`）](#upgradable)
--   ✅ [Demo the MultiSig AA（`multiSigAccount.ts`）](#multisig-account-abstraction-demo)
--   ✅ [Paymaster (`paymaster.ts`)](#paymaster)
--   🔨 Daily Limitation
--   🔨 Multi Calls
--   🔨 ERC-721 Token
--   🔨 Other Signature Algos.
--   🔨 L1 → L2 Msg
--   🔨 L2 → L1 Msg
--   🔨 Cross-chain governance
--   🔨 Social Recovery Account
--   🔨 Plugin (e.g. Session Key)
 
 ## Test the Contracts
 
@@ -264,14 +269,41 @@ ERC20 token balance of the empty wallet after mint: 14
 ✨  Done in 12.32s.
 ```
 
+### Daily Limitation
+
+```sh
+$ yarn execute:local daily-limitation.ts
+>
+SC Account deployed on address 0xcFDE18a0f130bBAfe0037072407F83899D49414f
+Funding smart contract account with some ETH
+Done!
+
+1. Try to set limit for account...
+Setting limit for account...
+Account limit enabled?:  true
+Account limit:  500000000000000
+Available limit today:  500000000000000
+Time to reset limit:  1688971610
+
+2. Try to perform the ETH transfer for fail...
+Account ETH limit is:  500000000000000
+Available today:  500000000000000
+L1 timestamp:  1688971607
+Limit will reset on timestamp:  1688971610
+Sending ETH transfer from smart contract account
+Transfer completed and limits updated!
+Account limit:  500000000000000
+Available today:  500000000000000
+Limit will reset on timestamp: 1688971610
+Reset time was not updated as not enough time has passed
+✨  Done in 11.57s.
+```
+
 ---
 
-## Questions
+## FAQ
 
-1. If we use the non-721-type to sign the normal transaction(non-deployment-transaction), is it valid or not?
-1. If I deploy my own contract factory which will use the `CREATE2` to deploy contract(not calling ContractDeployer system contract), is it valid or not?
-    - When we deploy a contract, do we MUST call the ContractDeployer?
-1. Will the operator or API check the transaction is 712-type or not?
+-   [zkSync Era Account Abstraction Q&A](https://hackmd.io/@ChiHaoLu/zkSync-AA-QnA)
 
 ---
 

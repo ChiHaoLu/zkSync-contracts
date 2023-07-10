@@ -6,19 +6,19 @@ import { Deployer } from "@matterlabs/hardhat-zksync-deploy"
 export default async function (hre: HardhatRuntimeEnvironment) {
     // @ts-ignore target zkSyncTestnet in config file which can be testnet or local
     const provider = new Provider(hre.config.networks.zkSyncTestnet.url)
-    const wallet = new Wallet("<DEPLOYER_PRIVATE_KEY>", provider)
+    const wallet = new Wallet(process.env.PRIVATE_KEY as string, provider)
     const deployer = new Deployer(hre, wallet)
     const factoryArtifact = await deployer.loadArtifact("AAFactory")
     const aaArtifact = await deployer.loadArtifact("Account")
 
     // Bridge funds if the wallet on zkSync doesn't have enough funds.
-    // const depositAmount = ethers.utils.parseEther('0.1');
-    // const depositHandle = await deployer.zkWallet.deposit({
-    //   to: deployer.zkWallet.address,
-    //   token: utils.ETH_ADDRESS,
-    //   amount: depositAmount,
-    // });
-    // await depositHandle.wait();
+    const depositAmount = ethers.utils.parseEther("0.1")
+    const depositHandle = await deployer.zkWallet.deposit({
+        to: deployer.zkWallet.address,
+        token: utils.ETH_ADDRESS,
+        amount: depositAmount,
+    })
+    await depositHandle.wait()
 
     const factory = await deployer.deploy(
         factoryArtifact,

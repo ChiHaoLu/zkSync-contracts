@@ -15,7 +15,7 @@
 -   Account Abstraction
     -   ✅ [Demo the MultiSig AA（`multiSigAccount.ts`）](#multisig-account-abstraction-demo)
     -   ✅ [Paymaster (`paymaster.ts`)](#paymaster)
-    -   ✅ [Daily Limitation](#daily-limitation)
+    -   ✅ [Daily Limitation (`daily-limit.ts`)](#daily-limitation)
     -   🔨 Multi Calls
     -   🔨 Other Signature Algos.
     -   🔨 Social Recovery Account
@@ -272,7 +272,7 @@ ERC20 token balance of the empty wallet after mint: 14
 ### Daily Limitation
 
 ```sh
-$ yarn execute:local daily-limitation.ts
+$ yarn execute:local daily-limit.ts
 >
 SC Account deployed on address 0xcFDE18a0f130bBAfe0037072407F83899D49414f
 Funding smart contract account with some ETH

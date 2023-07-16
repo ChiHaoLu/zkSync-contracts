@@ -16,6 +16,7 @@
     -   ✅ [Demo the MultiSig AA（`multiSigAccount.ts`）](#multisig-account-abstraction-demo)
     -   ✅ [Paymaster (`paymaster.ts`)](#paymaster)
     -   ✅ [Daily Limitation (`daily-limit.ts`)](#daily-limitation)
+    -   ✅ [USDC Paymaster (`usdcPaymaster.ts`)](#usdc-paymaster)
     -   🔨 Multi Calls
     -   🔨 Other Signature Algos.
     -   🔨 Social Recovery Account
@@ -274,7 +275,7 @@ ERC20 token balance of the empty wallet after mint: 14
 ```sh
 $ yarn execute:local daily-limit.ts
 >
-SC Account deployed on address 0xcFDE18a0f130bBAfe0037072407F83899D49414f
+SC Account deployed on address 0x3ccA24e1A0e49654bc3482ab70199b7400eb7A3a
 Funding smart contract account with some ETH
 Done!
 
@@ -283,20 +284,45 @@ Setting limit for account...
 Account limit enabled?:  true
 Account limit:  500000000000000
 Available limit today:  500000000000000
-Time to reset limit:  1688971610
+Time to reset limit:  1688972097
 
 2. Try to perform the ETH transfer for fail...
 Account ETH limit is:  500000000000000
 Available today:  500000000000000
-L1 timestamp:  1688971607
-Limit will reset on timestamp:  1688971610
+L1 timestamp:  1688972097
+Limit will reset on timestamp:  1688972097
 Sending ETH transfer from smart contract account
-Transfer completed and limits updated!
-Account limit:  500000000000000
-Available today:  500000000000000
-Limit will reset on timestamp: 1688971610
-Reset time was not updated as not enough time has passed
-✨  Done in 11.57s.
+Your transfer amount 510000000000000 is more than the available amount 500000000000000!
+
+✨  Done in 13.78s.
+```
+
+### USDC Paymaster
+
+Make sure you have requested the faucet token [here](https://goerli.portal.zksync.io/) 
+```sh
+$ yarn execute:testnet usdc-paymaster.ts
+>
+yarn execute:testnet usdc-paymaster.ts
+yarn run v1.22.19
+warning ../../../package.json: No license field
+$ hardhat deploy-zksync --network zkSyncEraTestnet --script usdc-paymaster.ts
+ERC20 address: 0x5Bb180A58602Ee59e92bDE0F4EeB199CB4c5CD42
+Paymaster address: 0x066179260bA5CBDf25a948a08e025bF7A0C19Aa9
+dAPI Proxies Set!
+Greeter contract address: 0x6224EB0a0Dd77992Bd4662618E6703C0426A03b4
+Minted 5k mUSDC for the empty wallet
+ERC20 balance of the user before tx: 5000000000000000000000
+Estimated ETH FEE (gasPrice * gasLimit): 163321750000000
+ERC20 allowance for paymaster : 0
+ETH/USD dAPI Value: 1938864733319239000000
+USDC/USD dAPI Value: 1000444380123487000
+Estimated USD FEE: 316518126894666096
+Current message is: old greeting
+ERC20 Balance of the user after tx: 4999683481873105333904
+Transaction fee paid in ERC20 was 316518126894666096
+Message in contract now is: new greeting
+✨  Done in 66.23s.
 ```
 
 ---

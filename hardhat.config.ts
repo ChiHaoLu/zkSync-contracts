@@ -36,7 +36,7 @@ module.exports = {
             zksync: false, // Set to false to target other networks.
         },
         zkSyncEraTestnet: {
-            url: "https://zksync2-testnet.zksync.dev", // you should use the URL of the zkSync network RPC
+            url: "https://testnet.era.zksync.dev", // you should use the URL of the zkSync network RPC
             ethNetwork: "goerli",
             zksync: true,
         },

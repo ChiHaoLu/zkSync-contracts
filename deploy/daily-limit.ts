@@ -134,25 +134,31 @@ export default async function (hre: HardhatRuntimeEnvironment) {
 
     // actually do the ETH transfer
     console.log("Sending ETH transfer from smart contract account")
-    try{
+    try {
         const sentTx1 = await provider.sendTransaction(zk.utils.serialize(ethTransferTx))
         await sentTx1.wait()
         console.log(`ETH transfer tx hash is ${sentTx1.hash}`)
-    } catch(e: any) {
+
+        console.log("Transfer completed and limits updated!")
+
+        const newLimitData = await account.limits(ETH_ADDRESS)
+        console.log("Account limit: ", newLimitData.limit.toString())
+        console.log("Available today: ", newLimitData.available.toString())
+        console.log("Limit will reset on timestamp:", newLimitData.resetTime.toString())
+
+        if (newLimitData.resetTime.toString() == limitData.resetTime.toString()) {
+            console.log("Reset time was not updated as not enough time has passed")
+        } else {
+            console.log("Limit timestamp was reset")
+        }
+    } catch (e: any) {
+        console.log(
+            `Your transfer amount ${ethers.utils.parseEther(
+                transferAmount,
+            )} is more than the available amount ${limitData.available.toString()}!`,
+        )
+        console.log()
         // console.log(e)
-    }
-
-    console.log("Transfer completed and limits updated!")
-
-    const newLimitData = await account.limits(ETH_ADDRESS)
-    console.log("Account limit: ", newLimitData.limit.toString())
-    console.log("Available today: ", newLimitData.available.toString())
-    console.log("Limit will reset on timestamp:", newLimitData.resetTime.toString())
-
-    if (newLimitData.resetTime.toString() == limitData.resetTime.toString()) {
-        console.log("Reset time was not updated as not enough time has passed")
-    } else {
-        console.log("Limit timestamp was reset")
     }
     return
 }
